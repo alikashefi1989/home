@@ -2,7 +2,7 @@
 import { create } from "zustand";
 // custom
 import { Store } from "../models/store";
-import { UserEntity } from "../models/user.entity";
+import { UserEntity } from "../models/entities/user.entity";
 
 const useStore = create<Store, any>((set, get) => (
     {
