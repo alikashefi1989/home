@@ -7,18 +7,18 @@ export function middleware(request: NextRequest) {
     // }
     // NextResponse.rewrite(request.nextUrl).cookies.delete('XXXXX').set('jafar', 'mamad');
     // return NextResponse.next();
-    let cookie = request.cookies.get('jafar')?.value;
-    console.log('---------->>', cookie);
+    let cookie = request.cookies.get('token')?.value;
+    console.log('token in middleware--->>', cookie);
     const response = NextResponse.next();
-    response.cookies.delete('XXXXX');
-    if (request.nextUrl.pathname === '/profile') {
-        response.cookies.set({
-            name: 'jafar',
-            value: 'mamad',
-            path: '/profile',
-            httpOnly: true,
-            secure: true,
-        });
-    }
+    // response.cookies.delete('XXXXX');
+    // if (request.nextUrl.pathname === '/profile') {
+    //     response.cookies.set({
+    //         name: 'jafar',
+    //         value: 'mamad',
+    //         path: '/profile',
+    //         httpOnly: true,
+    //         secure: true,
+    //     });
+    // }
     return response;
 }
