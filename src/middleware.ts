@@ -7,9 +7,16 @@ export function middleware(request: NextRequest) {
     // }
     // NextResponse.rewrite(request.nextUrl).cookies.delete('XXXXX').set('jafar', 'mamad');
     // return NextResponse.next();
-    let cookie = request.cookies.get('token')?.value;
-    console.log('token in middleware--->>', cookie);
-    const response = NextResponse.next();
+    let token = request.cookies.get('token')?.value;
+    // console.log('token in middleware--->>', token);
+    const headers = new Headers(request.headers);
+    headers.set('token', token || 'Not Found token');
+
+    const response = NextResponse.next({
+        request: {
+            headers
+        }
+    });
     // response.cookies.delete('XXXXX');
     // if (request.nextUrl.pathname === '/profile') {
     //     response.cookies.set({
